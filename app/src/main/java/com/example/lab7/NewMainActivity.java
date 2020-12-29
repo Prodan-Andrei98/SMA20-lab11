@@ -1,5 +1,6 @@
 package com.example.lab7;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -27,10 +28,11 @@ public class NewMainActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FloatingActionButton fabAdd;
     private ListView listPayments;
-    private int currentMonth;
+    private String currentMonth;
     private List<Payment> payments = new ArrayList<>();
     private PaymentAdapter adapter;
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,17 @@ public class NewMainActivity extends AppCompatActivity {
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
         listPayments = (ListView) findViewById(R.id.listPayments);
 
+        if (!AppState.isNetworkAvailable(this)) {
+            // has local storage already
+            if (AppState.get().hasLocalStorage(this)) {
+                AppState a = new AppState();
+                payments = a.loadFromLocalBackup(this, currentMonth);
+                tStatus.setText("Found " + payments.size() + " payments for " + currentMonth + ".");
+            } else {
+                Toast.makeText(this, "This app needs an internet connection!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         bPrevious.setOnClickListener(v -> onPrev());
         bNext.setOnClickListener(v -> onNext());
         fabAdd.setOnClickListener(v -> onFab());

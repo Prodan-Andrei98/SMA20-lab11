@@ -1,8 +1,12 @@
 package com.example.lab7;
-import com.google.firebase.database.IgnoreExtraProperties;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-@IgnoreExtraProperties
-public class Payment {
+public class Payment implements Serializable {
 
     public String timestamp;
     private double cost;
@@ -31,4 +35,25 @@ public class Payment {
     public String getType() {
         return type;
     }
+
+
+    public Payment copy() throws IOException, ClassNotFoundException {
+        //Serialization of object
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream out = new ObjectOutputStream(bos);
+        out.writeObject(this);
+
+        //De-serialization of object
+        ByteArrayInputStream bis = new   ByteArrayInputStream(bos.toByteArray());
+        ObjectInputStream in = new ObjectInputStream(bis);
+        Payment copied = (Payment) in.readObject();
+
+        //Verify that object is not corrupt
+
+        //validateNameParts(fName);
+        //validateNameParts(lName);
+
+        return copied;
+    }
+
 }
