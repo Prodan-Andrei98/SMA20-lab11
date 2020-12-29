@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="eExpenses" type="id" />
+    <item name="eIncome" type="id" />
+    <item name="eSearch" type="id" />
+    <item name="tStatus" type="id" />
+    <item name="spinner" type="id" />
+    <item name="bSearch" type="id" />
+    <item name="bUpdate" type="id" />
+</resources>
