@@ -18,7 +18,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private TextView tStatus;
     private EditText eSearch, eIncome, eExpenses;
     // firebase
-    private com.google.firebase.database.DatabaseReference databaseReference;
+    private DatabaseReference databaseReference;
     private String currentMonth;
     private ValueEventListener databaseListener;
     private FirebaseAuth mAuth;
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         sSearch.setAdapter(sAdapter);
 
 
-        databaseReference.child("Calendar").addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+        databaseReference.child("Calendar").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -119,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 databaseReference.child("Calendar").child(currentMonth).setValue(new MonthlyExpense(currentMonth, Float.valueOf(eExpenses.getText().toString()), Float.valueOf(eIncome.getText().toString()))).addOnCompleteListener(new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
-                        Log.d("drondu", String.valueOf(task.isSuccessful()));
+                        Log.d("medrea", String.valueOf(task.isSuccessful()));
                     }
                 });
 
@@ -157,18 +159,4 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
 
-    private class DatabaseReference {
-    }
-
-    private class ValueEventListener implements com.google.firebase.database.ValueEventListener {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    }
 }

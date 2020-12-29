@@ -7,4 +7,9 @@
     <item name="spinner" type="id" />
     <item name="bSearch" type="id" />
     <item name="bUpdate" type="id" />
+    <item name="bPrevious" type="id" />
+    <item name="bNext" type="id" />
+    <item name="fabAdd" type="id" />
+    <item name="listPayments" type="id" />
+    <item name="lBottom" type="id" />
 </resources>
