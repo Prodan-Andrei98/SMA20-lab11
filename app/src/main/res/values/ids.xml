@@ -12,4 +12,10 @@
     <item name="fabAdd" type="id" />
     <item name="listPayments" type="id" />
     <item name="lBottom" type="id" />
+    <item name="bDelete" type="id" />
+    <item name="bSave" type="id" />
+    <item name="paymentTime" type="id" />
+    <item name="paymentSpinner" type="id" />
+    <item name="paymentCost" type="id" />
+    <item name="paymentDescription" type="id" />
 </resources>
