@@ -18,4 +18,8 @@
     <item name="paymentSpinner" type="id" />
     <item name="paymentCost" type="id" />
     <item name="paymentDescription" type="id" />
+    <item name="tDetail" type="id" />
+    <item name="eEmail" type="id" />
+    <item name="ePass" type="id" />
+    <item name="pLoading" type="id" />
 </resources>

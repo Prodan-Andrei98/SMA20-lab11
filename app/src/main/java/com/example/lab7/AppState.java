@@ -100,6 +100,7 @@ public class AppState {
                 //}
             }
 
+
             return payments;
         } catch (IOException e) {
             Toast.makeText(context, "Cannot access local data.", Toast.LENGTH_SHORT).show();
